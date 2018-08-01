@@ -1,7 +1,7 @@
 <template>
-    <div class="card">
+    <div class="card" @mouseenter="handleMouseOver" @mouseleave="handleMouseLeave">
         <div class="image" :style="imageStyle" ></div>
-        <div class="content" >
+        <div class="content" :class="{hover: mouseOver}" >
             <div class="text" >{{post.text}}</div>
             <div class="info" >by <span>{{post.user.firstName}}</span> at <span>{{createdAt}}</span> </div>
             <div class="likes" >{{post.reactions}} Likes </div>
@@ -14,15 +14,26 @@ export default {
     props: ["post"],
     data() {
         return {
-            imageStyle: {
-                backgroundImage: `url(${this.post.url})`
-            }
+            mouseOver: false
         }
     },
     computed: {
         createdAt() {
             const date = new Date(this.post.createdAt)
             return date.toLocaleDateString()
+        },
+        imageStyle() {
+            return {
+                backgroundImage: `url(${this.post.url})`
+            }
+        }
+    },
+    methods: {
+        handleMouseOver() {
+            this.mouseOver = true;
+        },
+        handleMouseLeave() {
+            this.mouseOver = false;
         }
     }    
 }
@@ -48,6 +59,10 @@ export default {
         background-color: $dark-gray;
         color: $white;
         height: 100px;
+        transition: background-color .3s;
+        &.hover {
+            background-color: $purple;
+        }
         .text {
             @include title(16px);
         }
