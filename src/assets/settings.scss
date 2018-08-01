@@ -25,6 +25,12 @@
     font-size: $size;
 }
 
+@mixin source($size, $weight) {
+    font-family: Source Sans Pro;
+    font-size: $size;
+    font-weight: $weight;
+}
+
 @mixin button($width, $height, $font-size) {
     border: none;
     background-color: $blue;

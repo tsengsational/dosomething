@@ -1,7 +1,22 @@
 <template>
   <div id="app">
     <div class="title">
+      <a href="https://www.dosomething.org"></a>
       <img :src="logo" class="logo">
+      <ul>
+        <li>
+          <a href="https://www.dosomething.org/us/campaigns">
+            <div>Explore Campaigns</div>
+            <span>Find ways to take action both online and off.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.dosomething.org/us/about/who-we-are">
+            <div>What is DoSomething.org?</div>
+            <span>A global movement for good.</span>
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="hero" >
       <div class="hero-content">
@@ -39,7 +54,7 @@ export default {
   },
   created() {
     console.log('created')
-    fetch('http://graphql.dosomething.org/graphql?query={posts(campaignId: "7978") {status createdAt reactions url (w: 300, h: 300) text user { firstName}}}')
+    fetch('https://graphql.dosomething.org/graphql?query={posts(campaignId: "7978") {status createdAt reactions url (w: 300, h: 300) text user { firstName}}}')
       .then((resp) => {
         return resp.json()
       })
@@ -109,49 +124,52 @@ body {
 }
 
 .title {
-  width: 100vw;
-  height: 40px;
+  @include title(24px);
   background-color: $white;
   color: $white;
-  @include title(24px);
-  position: fixed;
-  top: 0;
+  height: 40px;
   left: 0;
+  position: fixed;
+  width: 100vw;
+  top: 0;
   z-index: 10;
   .logo {
+    left: 5vw;
+    max-height: 25px; 
     position: relative;
     top: 5px;
-    left: 5vw;
-    max-height: 25px 
+  }
+  ul {
+    display: none;
   }
 }
 
 .hero {
-  height: 300px;
-  width: 100vw;
-  margin-top: 40px;
   background-image: url("https://images.ctfassets.net/81iqaqpfd8fy/2VUWEkSWAgW4qIQCUyUIgA/90643e3aa19bb6eaeab961f31b6ad2da/_MyBigRegret_Header_1.jpg?w=1440&h=810&fit=fill");
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    box-sizing: border-box;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+  height: 300px;
+  margin-top: 40px;
+  width: 100vw;
+  position: relative;
     &::after {
+      background: linear-gradient($transparent, $black);
       content: "";
       height: 300px;
-      width: 100vw;
-      position: absolute;
-      z-index: 1;
-      top: 0px;
-      background: linear-gradient($transparent, $black);
       opacity: .5;
+      position: absolute;
+      top: 0px;
+      width: 100vw;
+      z-index: 1;
     }
   .hero-content {
+      color: $white;
+      left: calc(25%/2);
       position: absolute;
-      z-index: 2;
       top: 50%;
       width: 75%;
-      left: calc(25%/2);
-      color: $white;
+      z-index: 2;
       .campaign-title {
         @include title(32px);
       }
@@ -164,10 +182,10 @@ body {
 .cards-container {
   display: flex;
   flex-wrap:wrap;
-  width: 100vw;
   justify-content: space-around;
-  position: relative;
   margin-top: 60px;
+  position: relative;
+  width: 100vw;
 }
 
 .controls-container {
@@ -183,19 +201,43 @@ body {
 
 @media (min-width: 500px) {
   .cards-container {
-    width: 1000px;
-    left: calc(50vw - 500px);
-    justify-content: space-between;
     align-content: space-between;
     display: grid;
     grid-template-columns: 300px 300px 300px;
-    // grid-template-rows: 1fr 1fr 1fr;
+    justify-content: space-between;
+    left: calc(50vw - 500px);
+    width: 1000px;
   }
   .title {
     height: 70px;
     .logo {
       max-height: 60px;
     }
+    ul {
+      display: flex;
+      left: 15vw;
+      list-style: none;
+      list-style-type: none;
+      position: absolute;
+      top: -10px;
+      a {
+        text-decoration: none;
+      }
+      li {
+        margin-right: 32px;
+        div {
+          @include source(18px, 400);
+          color: $black;
+        }
+        span {
+          @include source(14px, 200);
+          color: $gray;
+          position: relative;
+          top: -10px;
+        }
+        
+      }
+    } 
   }
 
   .hero {
@@ -205,12 +247,12 @@ body {
       height: 620px;
     }
     .hero-content {
-      position: absolute;
-      z-index: 2;
       bottom: 24px;
-      margin-left: 12.5vw;
       font-size: 64px;
+      margin-left: 12.5vw;
+      position: absolute;
       width: 50%;
+      z-index: 2;
       .campaign-title {
         font-size: 54px;
       }
