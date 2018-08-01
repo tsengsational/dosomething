@@ -1,0 +1,50 @@
+@font-face {
+    font-family: ProximaNovaBold;
+    src: url("https://www.dosomething.org/sites/default/files/fonts/proxima-nova/ProximaNova-Bold.woff") format('woff');
+}
+
+@font-face {
+    font-family: ProximaNovaReg;
+    src: url("https://www.dosomething.org/sites/default/files/fonts/proxima-nova/ProximaNova-Regular.woff") format('woff')
+}
+
+@font-face {
+    font-family: Source Sans Pro;
+    src: url("https://www.dosomething.org/next/assets/e6793b9524d4f536e51b6250b230700c.woff") format('woff')
+}
+
+@mixin title($size) {
+    font-family: ProximaNovaBold;
+    font-weight: 700;
+    font-size: $size;
+}
+
+@mixin body($size) {
+    font-family: ProximaNovaReg;
+    font-weight: 400;
+    font-size: $size;
+}
+
+@mixin button($width, $height, $font-size) {
+    border: none;
+    background-color: $blue;
+    box-sizing: border-box;
+    color: $white;
+    @include title($font-size);
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: color .3s, background-color .3s;
+    padding: 16px;
+    &:hover {
+        color: $black;
+        background-color: $yellow;
+    }
+}
+
+$black: #000;
+$white: #FFF;
+$purple: #4e2b63;
+$yellow: #fcd116;
+$blue: #23b7fb;
+$gray: #999;
+$dark-gray: #222;
