@@ -105,7 +105,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $black;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .title {
@@ -187,6 +187,9 @@ body {
     left: calc(50vw - 500px);
     justify-content: space-between;
     align-content: space-between;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    // grid-template-rows: 1fr 1fr 1fr;
   }
   .title {
     height: 70px;

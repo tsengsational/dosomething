@@ -3,7 +3,7 @@
         <div class="image" :style="imageStyle" ></div>
         <div class="content" :class="{hover: mouseOver}" >
             <div class="text" >{{post.text}}</div>
-            <div class="info" >by <span>{{post.user.firstName}}</span> at <span>{{createdAt}}</span> </div>
+            <div class="info" >by <span class="first-name">{{post.user.firstName}}</span> at <span>{{createdAt}}</span> </div>
             <div class="likes" >{{post.reactions}} Likes </div>
         </div>
     </div>    
@@ -68,6 +68,11 @@ export default {
         }
         .info span {
             @include title(16px);
+            transition: color .3s;
+            &.first-name:hover {
+                color: $yellow;
+                cursor: pointer;
+            }
         }
     }
 }
